@@ -9,9 +9,10 @@ static pthread_mutex_t list_lock = PTHREAD_MUTEX_INITIALIZER;
 void list_init(Node** head, size_t size) {
     pthread_mutex_lock(&list_lock);
     *head = NULL;
-    mem_init(size);
+    mem_init(size * sizeof(Node));
     pthread_mutex_unlock(&list_lock);
 }
+
 
 void list_insert(Node** head, uint16_t data) {
     pthread_mutex_lock(&list_lock);
